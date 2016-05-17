@@ -1,0 +1,13 @@
+# Force https
+RewriteEngine on 
+RewriteCond %{HTTP:X-Forwarded-Proto} !https 
+RewriteRule .* https://%{HTTP_HOST}%{REQUEST_URI} [R,L]
+
+# Add securityheaders.io headers (except HPKP)
+Header set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+Header set X-XSS-Protection "1; mode=block"
+Header set X-Content-Type-Options "nosniff"
+Header set X-Frame-Options "DENY"
+
+# To do: fix CSP header
+Header unset Content-Security-Policy
