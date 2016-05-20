@@ -1,5 +1,6 @@
 <?php
 	include("sessionmanagement.php");
+	include("accountmanagement.php");
 
 	session_start();
 ?>

@@ -1,7 +1,6 @@
 <?php
         include("../include/pbkdf2.php");
 	include("../include/pbkdf2-config.php");
-        include("../include/accountmanagement.php");
 
         function failure ($message)
         {
@@ -41,7 +40,7 @@
 		include("../include/login_footer.php");
                 include("../include/footer.php");
 
-		login($username, $account["lat"], $account["lng"], $account["range"]);
+		login($username);
 		header("Refresh: 3; url=/market/home/");
 		exit();
 	}

@@ -1,7 +1,6 @@
 <?php
 	include("../include/pbkdf2.php");
 	include("../include/pbkdf2-config.php");
-	include("../include/accountmanagement.php");
 
 	function failure ($message)
 	{

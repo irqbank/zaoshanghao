@@ -1,6 +1,4 @@
 <?php
-	include("accountmanagement.php");
-
 	function failure ($message)
 	{
 		$message = htmlentities($message, ENT_QUOTES | ENT_HTML5);
@@ -64,11 +62,14 @@
 		<div>
 			<p>
 <?php
-		if (sessionActive() && isset($_SESSION["lat"]) && isset($_SESSION["lng"]))
+		if (sessionActive())
 		{
+			$activeaccount = getaccount($_SESSION["username"]);
+			$yourlat = $activeaccount["lat"];
+			$yourlng = $activeaccount["lng"];
 ?>
 			<script type="text/javascript">
-				var distance = <?php echo distance($_SESSION["lat"], $_SESSION["lng"], $lat, $lng); ?>;
+				var distance = <?php echo distance($yourlat, $yourlng, $lat, $lng); ?>;
 				if (distance < 5)
 					document.write("less than 5 kilometers away from you");
 				else if (distance < 50)
