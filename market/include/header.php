@@ -1,6 +1,7 @@
 <?php
-	if (isset($_COOKIE["PHPSESSID"]))
-		session_start();
+	include("sessionmanagement.php");
+
+	session_start();
 ?>
 <!doctype html>
 <html>
@@ -35,7 +36,7 @@
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 <?php
-	if (isset($_SESSION["username"]))
+	if (sessionActive())
 	{
 ?>
 				<li<?php if ($_SERVER['REQUEST_URI'] == "/market/view/?user=" . $_SESSION["username"]) echo ' class="active"'; ?>><a href="/market/view/?user=<?php echo htmlentities($_SESSION["username"], ENT_QUOTES | ENT_HTML5); ?>"><span class="glyphicon glyphicon-user"></span> <?php echo htmlentities($_SESSION["username"], ENT_QUOTES | ENT_HTML5); ?></a></li>

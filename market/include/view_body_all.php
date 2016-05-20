@@ -8,7 +8,7 @@
 		echo "<ul>\n";
 		foreach (array_keys($allaccounts) as $key)
 		{
-			if (isset($_SESSION["lat"]) && isset($_SESSION["lng"]))
+			if (sessionActive() && isset($_SESSION["lat"]) && isset($_SESSION["lng"]))
 				if (distance($_SESSION["lat"], $_SESSION["lng"], $allaccounts[$key]["lat"], $allaccounts[$key]["lng"]) > floatval($_SESSION["range"]))
 					continue;
 

@@ -1,28 +1,32 @@
 <?php
-	// ignore performance and race conditions for now
-	$accountsfile = "/tmp/accounts";
+	// to do: fix performance issues and race conditions
 
-	function accountexists($username)
+	function initialize()
 	{
-		global $accountsfile;
+		$accountsfile = "/tmp/accounts";
 
 		$size = filesize($accountsfile);
 		if (FALSE == $size || 0 == $size)
-			return false;
+			$_SESSION["accounts"] = array();
 
-		$accounts = unserialize(file_get_contents($accountsfile));
+		$_SESSION["accounts"] = unserialize(file_get_contents($accountsfile));
+	}
+
+	function accountexists($username)
+	{
+		if (! isset($_SESSION["accounts"]))
+			initialize();
+
+		$accounts = $_SESSION["accounts"];
 		return array_key_exists($username, $accounts);
 	}
 
 	function getaccount($username)
 	{
-		global $accountsfile;
+		if (! isset($_SESSION["accounts"]))
+			initialize();
 
-		$size = filesize($accountsfile);
-		if (FALSE == $size || 0 == $size)
-			return false;
-
-		$accounts = unserialize(file_get_contents($accountsfile));
+		$accounts = $_SESSION["accounts"];
 		if (array_key_exists($username, $accounts))
 			return $accounts[$username];
 		else
@@ -31,26 +35,19 @@
 
 	function getallaccounts()
 	{
-		global $accountsfile;
+		if (! isset($_SESSION["accounts"]))
+			initialize();
 
-		$size = filesize($accountsfile);
-		if (FALSE == $size || 0 == $size)
-			return false;
-
-		return unserialize(file_get_contents($accountsfile));
+		return $_SESSION["accounts"];
 	}
 
-	// precondition: accountexists returns false
+	// to do: enforce precondition that accountexists returns false
 	function storeaccount($newaccount)
 	{
-		global $accountsfile;
+		if (! isset($_SESSION["accounts"]))
+			initialize();
 
-		$accounts = array();
-		if (filesize($accountsfile) > 0)
-			$accounts = unserialize(file_get_contents($accountsfile));
-
-		$accounts = array_merge($accounts, $newaccount);
-		file_put_contents($accountsfile, serialize($accounts));
+		$_SESSION["accounts"] = array_merge($_SESSION["accounts"], $newaccount);
 	}
 
 	function distance($lat1, $lon1, $lat2, $lon2)

@@ -20,7 +20,7 @@
 	$lat           = $account["lat"];
 	$lng           = $account["lng"];
 
-	$viewingyourself = ( isset($_SESSION["username"]) && $_SESSION["username"] == $memberusername );
+	$viewingyourself = ( sessionActive() && $_SESSION["username"] == $memberusername );
 ?>
 <div class="row col-xs-12">
 	<div>
@@ -64,7 +64,7 @@
 		<div>
 			<p>
 <?php
-		if (isset($_SESSION["lat"]) && isset($_SESSION["lng"]))
+		if (sessionActive() && isset($_SESSION["lat"]) && isset($_SESSION["lng"]))
 		{
 ?>
 			<script type="text/javascript">

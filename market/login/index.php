@@ -41,12 +41,7 @@
 		include("../include/login_footer.php");
                 include("../include/footer.php");
 
-		// to do: implement session idle timeout and maximum session duration
-		session_start();
-		$_SESSION["username"] = $username;
-		$_SESSION["lat"]      = $account["lat"];
-		$_SESSION["lng"]      = $account["lng"];
-		$_SESSION["range"]    = $account["range"];
+		login($username, $account["lat"], $account["lng"], $account["range"]);
 		header("Refresh: 3; url=/market/home/");
 		exit();
 	}
