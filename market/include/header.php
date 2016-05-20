@@ -62,11 +62,11 @@
 								 	<form method="POST" action="/market/login/">
 										<div class="form-group">
 											 <label class="sr-only" for="loginusername">Username</label>
-											 <input required type="text" class="form-control" id="loginusername" name="loginusername" placeholder="Username">
+											 <input required type="text" class="form-control" id="loginusername" name="loginusername" placeholder="Username" autocomplete="off">
 										</div>
 										<div class="form-group">
 											<label class="sr-only" for="loginpassword">Password</label>
-											<input required type="password" class="form-control" id="loginpassword" name="loginpassword" placeholder="Password">
+											<input required type="password" class="form-control" id="loginpassword" name="loginpassword" placeholder="Password" autocomplete="off">
 											<div class="help-block text-right"><a href="" onclick="alert('Not implemented')">Forgot password?</a></div>
 										</div>
 										<div class="form-group">
