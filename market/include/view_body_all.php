@@ -12,7 +12,8 @@
 				if (distance($_SESSION["lat"], $_SESSION["lng"], $allaccounts[$key]["lat"], $allaccounts[$key]["lng"]) > floatval($_SESSION["range"]))
 					continue;
 
-			echo "<li><a href=\"/market/view/?user=$key\">" . htmlentities($key, ENT_QUOTES | ENT_HTML5) . "</a></li>\n";
+			$key = htmlentities($key, ENT_QUOTES | ENT_HTML5);
+			echo "<li><a href=\"/market/view/?user=$key\">$key</a></li>\n";
 		}
 		echo "</ul>\n";
 	}
